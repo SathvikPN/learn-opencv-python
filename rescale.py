@@ -13,27 +13,33 @@ def changeRes(width, height):
     capture.set(4,height)
 
 
-# Image 
-img = cv.imread('Photos/Saath.jpg')
-cv.imshow('Original_photo', img)
 
-img_resized = rescaleFrame(img,0.5) # Image Resize
+def main():
 
-cv.imshow('Photo_Resized',img_resized)
-cv.waitKey(0)
+    # Image 
+    img = cv.imread('Photos/Saath.jpg')
+    cv.imshow('Original_photo', img)
 
-# Video
-capture = cv.VideoCapture('Videos/hurray.mp4')
+    img_resized = rescaleFrame(img,0.5) # Image Resize
+
+    cv.imshow('Photo_Resized',img_resized)
+    cv.waitKey(0)
+
+    # Video
+    capture = cv.VideoCapture('Videos/hurray.mp4')
 
 
-while True:
-    isTrue, frame = capture.read()
-    cv.imshow('Original_Video', frame)
+    while True:
+        isTrue, frame = capture.read()
+        cv.imshow('Original_Video', frame)
 
-    frame_resized = rescaleFrame(frame,0.7) # Resize every frame of video
-    cv.imshow('Resized_video', frame_resized) 
+        frame_resized = rescaleFrame(frame,0.7) # Resize every frame of video
+        cv.imshow('Resized_video', frame_resized) 
 
-    if cv.waitKey(20) & 0xFF==ord('d'):
-        break
-capture.release()
-cv.destroyAllWindows()
+        if cv.waitKey(20) & 0xFF==ord('d'):
+            break
+    capture.release()
+    cv.destroyAllWindows()
+
+if __name__=='__main__': # Won't execute this script when imported into another. But can borrow function definitions
+    main()
